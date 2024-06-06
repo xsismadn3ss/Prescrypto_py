@@ -1,0 +1,25 @@
+{% extends "core/master.html" %}
+{% block title %}Log in{% endblock title %}
+{% block content %}
+<div class="centered_group">
+    <div style="margin-top: 20%;" class="card">
+        <div>
+            <h1 style="font-size: 40;">Log in</h1>
+        </div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div>
+                <label for="name">Usuario:</label>
+                <input type="text" name="username" placeholder="ingresa tu nombre de usuario" required>
+            </div>
+            <div>
+                <label for="password">Contraseña:</label>
+                <input type="password" name="password" placeholder="ingresa tu contraseña" required>
+            </div>
+            {{data}}
+            <button type="submit">Log in</button>
+        </form>
+    </div>
+    <a href={% url "sign_up" %}>Crear una cuenta</a>
+</div>
+{% endblock content %}
