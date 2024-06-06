@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render
 from Prescrypto.models import Users
-from Prescrypto.forms import UserForm
+# from Prescrypto.forms import UserForm
 from Prescrypto.auth_model import auth
 import hashlib
 
@@ -14,7 +14,7 @@ def hash_password(password):
 
 def check_auth_state(view_func):
     def _wrapped_view_func(request, *args, **kwargs):
-        if auth.state == True:
+        if auth.state:
             return view_func(request, *args, **kwargs)
         else:
             return HttpResponseRedirect("/login/")
@@ -33,7 +33,8 @@ def login(request):
                 data = auth.description = f"Bienvenido {username}"
                 auth.state = True
                 return HttpResponseRedirect("/", {"auth":auth.state})
-        except Exception as e:  
+        except Exception as e:
+            print(e)  
             data = "Datos incorectos ⚠️"
             return render(request, "core/login.html", {"data":data, "auth":auth.state})
     return render(request, "core/login.html", {"auth":auth.state})
@@ -63,13 +64,11 @@ def create_account(request):
                     dui = dui,
                     wallet = wallet,
                     private_key = pk,
-                    password = hash_password(password)
+                    password = password
                 )
                 add_user.save()
 
             except Exception as e:
-                print(e)
-
                 if str(e) == "UNIQUE constraint failed: Prescrypto_users.username":
                     return render(
                         request, 
