@@ -1,0 +1,41 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    <title>{% block tittle %}{% endblock tittle %}</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div style="width: 25%;" class="logo">
+                <a href={% url "home" %}>Prescrypto</a>
+            </div>
+            <ul style="width: 45%; justify-content: center;">
+                <li><a href={% url "home" %}>Inicio</a></li>
+                <li><a href={% url "recetas" %}>Recetas</a></li>
+            </ul>
+            <ul style="width: 30%; justify-content: right;">
+                {% comment %} <li>
+                    <a style="background-color: #e3e3e3; margin-right: 5px; border-radius: 20px;" href={% url "login" %}>Iniciar sesion</a>
+                </li> {% endcomment %}
+                <li>
+                    {% if auth == False %}
+                        <a style="background-color: #80ffa2; margin-right: 5px; border-radius: 20px;" href={% url "login" %}>Iniciar sesion</a>
+                    {% endif %}
+                    {% if auth == True %}
+                        <a style="background-color: #e3e3e3; margin-right: 5px; border-radius: 20px;" href={% url "logout" %}>Cerrar sesion</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
+        {% block header %}{% endblock header %}
+    </header>
+    <main>
+        {{home_data}}
+        {% block content %}{% endblock content %}
+    </main> 
+    <footer>{% block footer %}{% endblock footer %}</footer>
+</body>
+</html>
