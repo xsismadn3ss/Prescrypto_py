@@ -1,5 +1,8 @@
 /.venv
+__pycache__/
+migrations/
 /__pycache__
+/migrations
 
 # Django stuff:
 *.log
