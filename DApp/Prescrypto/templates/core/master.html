@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static "img/icon.png" %}">
     <title>{% block tittle %}{% endblock tittle %}</title>
 </head>
 <body>
     <header>
         <nav>
+            <img style="height: 3rem; padding-left: 5px; padding-bottom: 5px;" src="{% static "img/icon.png" %}" alt="Prescrypto logo">
             <div style="width: 25%;" class="logo">
                 <a href={% url "home" %}>Prescrypto</a>
             </div>
             <ul style="width: 45%; justify-content: center;">
                 <li><a href={% url "home" %}>Inicio</a></li>
-                <li><a href={% url "recetas" %}>Recetas</a></li>
+                <li><a href={% url "recetas" %}>Mis recetas</a></li>
             </ul>
             <ul style="width: 30%; justify-content: right;">
                 {% comment %} <li>
@@ -22,10 +24,10 @@
                 </li> {% endcomment %}
                 <li>
                     {% if auth == False %}
-                        <a style="background-color: #80ffa2; margin-right: 5px; border-radius: 20px;" href={% url "login" %}>Iniciar sesion</a>
+                        <a style="background-color: #60ff75; margin-right: 5px; border-radius: 25px;" href={% url "login" %}>Iniciar sesion</a>
                     {% endif %}
                     {% if auth == True %}
-                        <a style="background-color: #e3e3e3; margin-right: 5px; border-radius: 20px;" href={% url "logout" %}>Cerrar sesion</a>
+                        <a style="background-color: #e3e3e3; margin-right: 5px; border-radius: 25px;" href={% url "logout" %}>Cerrar sesion</a>
                     {% endif %}
                 </li>
             </ul>
