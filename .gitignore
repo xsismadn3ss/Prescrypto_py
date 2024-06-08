@@ -3,6 +3,7 @@ __pycache__/
 migrations/
 /__pycache__/
 /migrations
+*.pyc
 
 # Django stuff:
 *.log
