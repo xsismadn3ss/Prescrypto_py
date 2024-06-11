@@ -3,21 +3,33 @@
 {% block title %}Recetas{% endblock title %}
 
 {% block content %}
-<div class="centered_group">
-    <h1 class="tittle">Recetario</h1>
-    <p style="margin-top: 1rem;">En esta página encontrarás las recetas con los médicos que hayas pasado consulta. Haz click en el nombre de un médico para ver las recetas que te ha prescrito.</p>
-    <hr>
-    <div class="card">
-        <h3><a class="contact" href={% url "prescriptions" %}>Dr. juan alonso chuchillas</a></h3>
+<section>
+    <div style="max-width: 80ch;">
+        <h1 class="tittle">Recetas</h1>
+        <p style="margin-top: 1rem;">En esta página encontrarás las recetas con los médicos que hayas pasado consulta. Haz click en el nombre de un médico para ver las recetas que te ha prescrito.</p>
+        <hr>
+        <div style="display: flex; flex-direction: column; color: #60ff75;">
+            <a class="transparent_card glow" href={% url "prescriptions" %}>
+                <h3>Dr. juan alonso chuchillas</h3>
+            </a>
+            <a class="transparent_card glow"" href={% url "prescriptions" %}>
+                <h3 style>
+                    Dra. Miranda Estrada
+                </h3>
+            </a>
+            <a class="transparent_card glow" href={% url "prescriptions" %}>
+                <h3>
+                    Dr. juan alonso chuchillas
+                </h3>
+            </a>
+            <a class="transparent_card glow" href={% url "prescriptions" %}>
+                <h3>
+                    Dr. juan guillermo alonso chuchillas
+                </h3>
+            </a>
+        </div>
     </div>
-    <div class="card">
-        <h3><a class="contact" href={% url "prescriptions" %}>Dr. juan alonso chuchillas</a></h3>
-    </div>
-    <div class="card">
-        <h3><a class="contact" href={% url "prescriptions" %}>Dr. juan alonso chuchillas</a></h3>
-    </div>
-    <div class="card">
-        <h3><a class="contact" href={% url "prescriptions" %}>Dr. juan guillermo alonso chuchillas</a></h3>
-    </div>
-</div>
+    <!-- <hr> -->
+    {{ data }}
+</section>
 {% endblock content %}

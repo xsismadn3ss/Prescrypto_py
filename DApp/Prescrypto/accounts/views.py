@@ -1,3 +1,4 @@
+from re import template
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.template import loader
@@ -30,7 +31,10 @@ def login(request):
 
             if myuser.username == username and myuser.password == password is not None:
                 print(True)
-                data = auth.description = f"Bienvenido {username}"
+                data = auth.description = f"{username}"
+                print(myuser.dui)
+                auth.id = myuser.dui
+                print(auth.id)
                 auth.state = True
                 return HttpResponseRedirect("/", {"auth":auth.state})
         except Exception as e:
@@ -40,8 +44,26 @@ def login(request):
     return render(request, "core/login.html", {"auth":auth.state})
 
 def logout(request):
-    template = loader.get_template("core/logout.html")
-    return HttpResponse(template.render())
+    template = "core/logout.html"
+    if request.method == "POST" and auth.state == True:
+        # estado = auth.state = False
+        yes = request.POST.get("Si")
+        no = request.POST.get("No")
+        
+        if yes == "ok":
+            auth.state = False
+            auth.id = None
+            print(f"sesión finalizada ({auth.description})")
+            auth.description = ""
+            return HttpResponseRedirect("/", {"auth": auth.state})
+        
+        if no == "cancel":
+            auth.state = True
+            return HttpResponseRedirect("/", {"auth":auth.state})
+    else:
+        return render(request, template, {"auth": auth.state})
+
+    return render(request, template)
 
 
 def create_account(request):
@@ -69,31 +91,83 @@ def create_account(request):
                 add_user.save()
 
             except Exception as e:
+                print(e)
+                # return render(
+                #     request, "core/create_account.html", {}
+                # )
                 if str(e) == "UNIQUE constraint failed: Prescrypto_users.username":
                     return render(
                         request, 
                         "core/create_account.html",
-                        {"data": "*El nombre de usuario ya existe*"}
+                        {
+                            "data": "*El nombre de usuario ya existe*",
+                            "name": name,
+                            "lastname": lastname,
+                            # "username": username,
+                            "dui": dui,
+                            "wallet": wallet,
+                            "pk": pk,
+                            "password": password,
+                            "password_c": confirm
+                        }
                     )
-                if str(e) == "UNIQUE constraint failed: Prescrypto_users.dui":
+                elif str(e) == "UNIQUE constraint failed: Prescrypto_users.dui":
                     return render(
                         request, 
                         "core/create_account.html",
-                        {"data": "*El DUI que deseas ingresar ya esta registrado*"}
+                        {
+                            "data": "*El DUI que deseas ingresar ya esta registrado*",
+                            "name": name,
+                            "lastname": lastname,
+                            "username": username,
+                            # "dui": dui,
+                            "wallet": wallet,
+                            "pk": pk,
+                            "password": password,
+                            "password_c": confirm
+                        }
                     )
-                if str(e) == "UNIQUE constraint failed: Prescrypto_users.private_key":
+                elif str(e) == "UNIQUE constraint failed: Prescrypto_users.wallet" or "UNIQUE constraint failed: Prescrypto_users.private_key":
                     return render(
                         request, 
                         "core/create_account.html",
-                        {"data": "*Asegurate de pegar la claver privada correcta*"}
-                    )
-                if str(e) == "UNIQUE constraint failed: Prescrypto_users.wallet":
-                    return render(
-                        request, 
-                        "core/create_account.html",
-                        {"data": "*Esta billetera de ethereum ya esta registrada*"}
+                        {
+                            "data": "*Esta billetera de ethereum ya esta registrada*",
+                            "name": name,
+                            "lastname": lastname,
+                            "username": username,
+                            "dui": dui,
+                            # "wallet": wallet,
+                            # "pk": pk,
+                            "password": password,
+                            "password_c": confirm
+                        }
                     )
         else:
-            return render(request, "core/create_account.html", {"data":"*La contraseña no coincide*"})
+            return render(
+                request, "core/create_account.html", 
+                {
+                    "data":"*La contraseña no coincide*", 
+                    "auth": auth.state,
+                    "name": name,
+                    "lastname": lastname,
+                    "username": username,
+                    "dui": dui,
+                    "wallet": wallet,
+                    "pk": pk,
+                    # "password": password,
+                    # "password_c": confirm
+                }
+            )
     else:
-        return render(request, "core/create_account.html")
+        return render(request, "core/create_account.html", {"auth": auth.state})
+    
+def account_details(request):
+    template = "core/account.html"
+    user = Users.objects.get(dui=f"{auth.id}")
+    # print(user.firstname)
+    context = {
+        "user": user,
+        "auth": auth.state 
+    }
+    return render(request, template, context=context)
