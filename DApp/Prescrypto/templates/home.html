@@ -3,59 +3,53 @@
 {% block tittle %}Home{% endblock tittle%}
 
 {% block content %}
-<div class="centered_group" style="font-family: 'Minecraft';">
-    <h1 class="tittle">Prescrypto</h1>
-    <h2 style="color: #60ff75; text-decoration:underline;" class="tittle">Tus prescripciones en un solo lugar</h2>
-</div>
-<div style="background-color:#002304; padding-top: 10px; padding-bottom: 3rem; padding-top:3rem; margin-top: 3rem; font-family: 'Minecraft';">
-    <div style="margin-top: 0rem; display: flex;" class="centered_group">
-        <br>
-        <img style="height: 18rem;" src="static/img/homepic_8.png" alt="prescrypto logo">
-        <div style="margin-left: 1rem;">
-            <p>
-                <br>
-                <h2 style="color: #3bb74c; padding-bottom: 5px;"">¿QUE ES PRESCRYPTO?</h2>
-                Prescrypto es la app donde puedes almacenar, consultar, y compartir tus prescripciones en un solo lugar. Prescrypto tiene como objetivo agilizar el proceso de crear recetas a pacientes con el fin de evitar el papeleo.
-                <br>
-            </p>
+<div>
+    <section style="min-height: 50vh;">
+        <h1 style="font-family: 'Tiny5', sans-serif; font-weight: 400; font-style: normal; font-size: 80;">Prescrypto</h1>
+        <h2 style="text-decoration:underline;">Tus prescripciones en un solo lugar</h2>
+        <img style="height: 20vh;" src="static/img/icon.png" alt="prescrypto logo">
+    </section>
+    
+    <section>
+        <div style="display: flex;">
+            <img style="height: 16rem;" src="static/img/homepic_8.png" alt="prescrypto logo">
+            <div class="transparent_card">
+                <h2>¿QUE ES PRESCRYPTO?</h2>
+                <p style="max-width: 50ch;">
+                    Prescrypto es la app donde puedes almacenar, consultar, y compartir tus prescripciones en un solo lugar. Prescrypto tiene como objetivo agilizar el proceso de crear recetas a pacientes con el fin de evitar el papeleo.
+                </p>
+            </div>
         </div>
-    </div>
-</div>
-<div style="font-family: 'Minecraft'; display: flex; justify-content: right; margin-bottom: 3rem; margin-top: 3rem;" class="centered_group">
-        <div>
-            <p>
-                <br>
-                <h2 style="color: #3bb74c; padding-bottom: 5px;"">¿COMO FUNCIONA PRESCRYPTO?</h2>
-                <br>
-                Prescrypto almacena todas las prescirpciones en la red ethereum, gracias a la tecnología blockchain. No se necesita utilizar una base de datos para almacenar las prescripciones.
-                <br>
-                <br>
-                Prescrypto hace uso de un smart contract para gestionar la creación, edición y busqueda de prescripciones. La tecnología blockchain impide el fraude y elimina vulnerabilidades comunes que pueda tener una base de datos ordinaria.
-            </p>
+    </section>
+    
+    <section>
+        <div style="display: flex;">
+            <div class="transparent_card" style="max-width: 50ch; box-shadow: -10px 10px 20px 0px black;">
+                <h2 style="color: #3bb74c; text-align: right;">¿COMO FUNCIONA PRESCRYPTO?</h2>
+                <p>Prescrypto almacena todas las prescirpciones en la red ethereum, gracias a la tecnología blockchain. No se necesita utilizar una base de datos para almacenar las prescripciones.</p>
+                <p>Prescrypto hace uso de un smart contract para gestionar la creación, edición y busqueda de prescripciones. La tecnología blockchain impide el fraude y elimina vulnerabilidades comunes que pueda tener una base de datos ordinaria.</p>
+            </div>
+            <img style="height: 16rem;" src="static\img\homepic_contract.png" alt="smart contract">
         </div>
-        <img style="height: 18rem;" src="static\img\homepic_registro.jpeg" alt="smart contract">
-</div>
-<div style="background-color: #002304; font-family: 'Minecraft'; padding-bottom: 3rem; padding-top: 3em;">
-    <div class="centered_group" style="display: flex; margin-top: 0;">
-        <img style="height: 18rem;" src="static/img/data.png" alt="registro de prescirpciones">
-        <div style="margin-left: 1rem;">
-            <h2 style="color: #3bb74c; padding-bottom: 5px; text-align: left;">APOYAMOS LA TRANSPARENCIA</h2>
-            <p>
-                Todas las prescripciones almacenadas en la red blockchain son publicas, cualquier usuario puede consultar información de las prescripciones sobre otro paciente o médico. Esto garantiza que no exista fraude en el sistema de Prescrypto.
-            </p>
+    </section>
+    <section>
+        <div style="display: flex;">
+            <img style="height: 16rem;" src="static/img/data.png" alt="registro de prescirpciones">
+            
+            <div class="transparent_card" style=" max-width: 50ch;">
+                <h2 style="text-align: left;">APOYAMOS LA TRANSPARENCIA</h2>
+                <p>Todas las prescripciones almacenadas en la red blockchain son publicas, cualquier usuario puede consultar información de las prescripciones sobre otro paciente o médico. Esto garantiza que no exista fraude en el sistema de Prescrypto.</p>
+            </div>
         </div>
-
-    </div>
-</div>
-<div style="font-family: 'Minecraft'; display: flex; justify-content: right;" class="centered_group">
-    <div style="margin-right: 1rem;">
-        <p>
-            <br>
-            <h2 style="color: #3bb74c; padding-bottom: 5px; text-align: right;">CONTENIDO ORIENTADO AL USUARIO</h2>
-            En este sitio web encontraras tus prescripciones ordenadas por el nombre de los medicos con los que hayas pasado consulta. Esto te premitira encontrar mas rapido lo que necesites.
-            <br>
-        </p>
-    </div>
-    <img style="height: 18rem;" src="static/img/homepic_medic.png" alt="prescripciones ordenas por medico">
+    </section>
+    <section>
+        <div style="display: flex;">
+            <div class="transparent_card" style="max-width: 50ch; box-shadow: -10px 10px 20px 0px black;">
+                <h2>CONTENIDO ORIENTADO AL USUARIO</h2>
+                <p>En este sitio web encontraras tus prescripciones ordenadas por el nombre de los medicos con los que hayas pasado consulta. Esto te premitira encontrar mas rapido lo que necesites.</p>
+            </div>
+            <img style="height: 16rem;" src="static/img/homepic_medic.png" alt="prescripciones ordenas por medico">
+        </div>
+    </section>
 </div>
 {% endblock content %}
